@@ -1,0 +1,160 @@
+.transition, .transform, .animation{
+    border: 2px solid rgb(0, 0, 0);
+}
+
+.box{
+    width: 100px;
+    height: 100px;
+}
+
+.b1{
+   background-color: #f0f; 
+}
+
+.b2{
+    background-color: rgb(255, 0, 0);
+}
+
+.b3{
+    background-color: #00f;
+}
+
+.b4{
+    background-color: #0f0;
+}
+
+/* CSS transitions */
+
+.transition .b1{
+    /* name/duration/timing function/delay */
+    transition: width 1s cubic-bezier(.21,.62,1,.74) 0.5s;
+}
+
+.transition .b1:hover{
+    width: 400px;
+}
+
+.transition .b2{
+    transition: width 1s ease-in, height 1s ease-in 1s;
+    /* width transition first, once done transition height */
+    /* I haven't had this much fun since i learned grid */
+}
+
+.transition .b2:hover{
+    width: 400px;
+    height: 400px;
+}
+
+.transition .b3{
+    transition: all 1s;
+}
+
+.transition .b3:hover{
+    background-color: #f00;
+    border-radius: 50%;
+}
+
+.transition .b4{
+    transition: background-color 1s cubic-bezier(.21,.62,1,.74), width 1s ease-in, height 1s ease-in 1s, border-radius 0.3s;
+}
+
+.transition .b4:hover{
+    height: 400px;
+    background-color: #f0f;
+    width: 400px;
+    border-radius: 50%;
+}
+
+/* CSS transform */
+
+.transform .box{
+    transition: transform 1s ease-in;
+}
+
+.transform .b1{
+    /* transform-origin: bottom right; */
+}
+
+.transform .b1:hover{
+    /* rotating around z axis */
+    transform: rotate(1080deg);
+    /* rotate around the z axis 4 times counter-clockwise */
+    transform: rotate(-4turn);
+}
+
+.transform .b2:hover{
+    transform: translate(20px, 20px);
+    /* move the box towards left x axis 10px */
+    transform: translate(-10px, 0px);
+}
+
+.transform .b3:hover{
+    transform: scale(0.5);
+    /* only decrease by 0.5 width */
+    transform: scale(0.5, 1);
+    /* increase width by 1.5 and decrease height by 0.3 */
+    transform: scale(1.5, 0.3);
+}
+
+.transform .b4:hover{
+    transform: skew(20deg, 40deg);
+}
+
+/* CSS Animations */
+
+@keyframes changebg{
+    from{
+        background-color: #f0f;
+    }
+    to{
+        background-color: #0f0;
+    }
+}
+
+.animation .b1{
+    animation-name: changebg;
+    animation-duration: 1s;
+    animation-delay: 4s;
+    animation-iteration-count: 2;
+    animation-fill-mode: both;
+}
+
+@keyframes moveit{
+    0%{
+        transform: translate(0, 0);
+    }
+    25%{
+        transform: translate(100px, 0);
+    }
+    50%{
+        transform: translate(100px, 100px);
+    }
+    75%{
+        transform: translate(0px, 100px);
+    }
+    100%{
+        transform: translate(0, 0);
+    }
+}
+
+.animation .b2{
+    /* name durationg delay count direction */
+    animation: moveit 4s 1s 2 alternate;    
+}
+/* note if this \/ is 'active' it means clicked and held */
+.animation .b2:hover{
+    animation-play-state: paused;
+}
+
+@keyframes multitransfo{
+    0%{
+        transform: scale(0.5) translateX(0);
+    }
+    100%{
+        transform: scale(1.5) translateX(400px);
+    }
+}
+
+.animation .b3{
+    animation: multitransfo 5s 5s 2 alternate both;    
+}
